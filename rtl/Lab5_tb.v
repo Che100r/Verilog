@@ -6,13 +6,15 @@ localparam CLK_SEMIPERIOD = ( 1000 / CLK_FREQ_MHZ ) / 2;
 
 reg clk;
 reg reset;
-reg button;
+reg buttonWrite;
+reg buttonRead;
 
 Lab5 DUT
 (
 	.clk (clk),
 	.reset (reset),
-	.button (button)
+	.buttonWrite (buttonWrite),
+	.buttonRead (buttonRead)
 );
 
 initial begin
@@ -24,11 +26,21 @@ end
 
 initial begin
 	forever begin
-		button = 1;
-		#( 20 * CLK_SEMIPERIOD );
-		button = 0;
+		buttonWrite = 0;
+		#( 50 * CLK_SEMIPERIOD );
+		buttonWrite = 1;
 		#( 2 * CLK_SEMIPERIOD );
-		button = 1;
+		buttonWrite = 0;
+	end
+end
+
+initial begin
+	forever begin
+		buttonRead = 0;
+		#( 20 * CLK_SEMIPERIOD );
+		buttonRead = 1;
+		#( 2 * CLK_SEMIPERIOD );
+		buttonRead = 0;
 	end
 end
 

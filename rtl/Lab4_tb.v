@@ -24,11 +24,11 @@ end
 
 initial begin
 	forever begin
-		button = 1;
-		#( 100 * CLK_SEMIPERIOD );
 		button = 0;
-		#( 2 * CLK_SEMIPERIOD );
+		#( 100 * CLK_SEMIPERIOD );
 		button = 1;
+		#( 2 * CLK_SEMIPERIOD );
+		button = 0;
 	end
 end
 

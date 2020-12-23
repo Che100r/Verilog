@@ -31,7 +31,7 @@ reg [2:0] button_syncroniser;
 
 always @(posedge clk)
 begin
-	button_syncroniser[0] <= button;
+	button_syncroniser[0] <= !button;
 	button_syncroniser[1] <= button_syncroniser[0];
 	button_syncroniser[2] <= button_syncroniser[1];
 end
